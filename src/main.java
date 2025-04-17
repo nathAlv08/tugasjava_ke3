@@ -175,14 +175,16 @@ class SearchingSorting {
 
     public static void main(String[] args) {
         while (true) {
-            System.out.println(Ui.garis);
+            System.out.println(Ui.garisDua);
             System.out.println("Searching & Sorting");
+            System.out.println(Ui.garisDua);
             System.out.println("1. Tambah Data");
             System.out.println("2. Tampilkan Data");
             System.out.println("3. Searching Nama");
             System.out.println("4. Sorting Nama");
+            System.out.println(Ui.garis);
             System.out.println("Ketik 'exit' untuk kembali ke menu utama.");
-            System.out.print("Pilih: ");
+            System.out.print(": ");
             String input = scanner.nextLine();
 
             if (input.equalsIgnoreCase("exit")) {
@@ -196,13 +198,13 @@ class SearchingSorting {
                     while (true) {
                         System.out.print("Masukkan nama : ");
                         String nama = scanner.nextLine();
-                        if (nama.equalsIgnoreCase("exit") || nama.equalsIgnoreCase("cukup")) {
+                        if (nama.equalsIgnoreCase("exit") || nama.equalsIgnoreCase("cukup") || nama.length() < 2)  {
                             System.out.println("Ok (>-<)");
                             Tidur.tidur();
                             break;
                         }
                         data.add(nama);
-                        System.out.println("Nama berhasil ditambahkan.");
+                        System.out.println("Ditambahkan");
                     }
                     break;
 
@@ -212,7 +214,7 @@ class SearchingSorting {
                     break;
                 case "3":
                     if (data.isEmpty()) {
-                        System.out.println("Data masih kosong, silakan tambahkan data terlebih dahulu.");
+                        System.out.println("Data Kosong");
                         Tidur.tidur();
                         break;
                     }
@@ -221,22 +223,25 @@ class SearchingSorting {
                     int posisi = linearSearch(cari);
                     if (posisi != -1) {
                         System.out.println(cari + " Urutan ke " + (posisi + 1));
+                        Tidur.tidur();
                     } else {
                         System.out.println(cari + " 404 not Found :( ");
+                        Tidur.tidur();
                     }
                     break;
                 case "4":
                     if (data.isEmpty()) {
                         System.out.println("Data masih kosong");
+                        Tidur.tidur();
                         break;
                     }
                     Collections.sort(data, String.CASE_INSENSITIVE_ORDER);
-                    System.out.println("Data diurutkan.");
+                    System.out.println("Data diurutkan");
                     tampilData();
                     Tidur.tidur();
                     break;
                 default:
-                    System.out.println("Pilihan ra ono.");
+                    System.out.println("Pilihan ra ono");
                     Tidur.tidur();
             }
         }
@@ -244,12 +249,16 @@ class SearchingSorting {
 
     static void tampilData() {
         if (data.isEmpty()) {
-            System.out.println("Data masih kosong.");
+            System.out.println("Data masih kosong");
+            Tidur.tidur();
         } else {
-            System.out.println("Data saat ini:");
+            System.out.println(Ui.garis);
+            System.out.println("Jumlah Data : " + data.size());
+            System.out.println(Ui.garis);
             for (int i = 0; i < data.size(); i++) {
                 System.out.println((i + 1) + ". " + data.get(i));
             }
+            System.out.println(Ui.garis);
         }
     }
 

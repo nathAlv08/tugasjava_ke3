@@ -33,7 +33,7 @@ public class Tugasjav3 {
             System.out.println("============   Menu  ===============");
             System.out.println("1. Program Antrian FIFO");
             System.out.println("2. Program Antrian LIFO");
-            System.out.println("3. Searching & Sorting (belum diisi)");
+            System.out.println("3. Searching & Sorting");
             System.out.println(Ui.garis);
             System.out.println("Ketik \"daftar\" untuk melihat daftar anggota.");
             System.out.println("Ketik \"info\" untuk link Repo Github.");
@@ -177,9 +177,106 @@ class AntrianLIFO {
 }
 
 class SearchingSorting {
+    static Scanner scanner = new Scanner(System.in);
+    static ArrayList<String> data = new ArrayList<>();
+
     public static void main(String[] args) {
-        System.out.println("Fungsi Searching dan Sorting belum diisi.");
-        Tidur.tidur();
+        while (true) {
+            System.out.println(Ui.garisDua);
+            System.out.println("Searching & Sorting");
+            System.out.println(Ui.garisDua);
+            System.out.println("1. Tambah Data");
+            System.out.println("2. Tampilkan Data");
+            System.out.println("3. Searching Nama");
+            System.out.println("4. Sorting Nama");
+            System.out.println(Ui.garis);
+            System.out.println("Ketik 'exit' untuk kembali ke menu utama.");
+            System.out.print(": ");
+            String input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Kembali ke Main Menu...");
+                Tidur.tidur();
+                break;
+            }
+
+            switch (input) {
+                case "1":
+                    while (true) {
+                        System.out.print("Masukkan nama : ");
+                        String nama = scanner.nextLine();
+                        if (nama.equalsIgnoreCase("exit") || nama.equalsIgnoreCase("cukup") || nama.length() < 2)  {
+                            System.out.println("Ok (>-<)");
+                            Tidur.tidur();
+                            break;
+                        }
+                        data.add(nama);
+                        System.out.println("Ditambahkan");
+                    }
+                    break;
+
+                case "2":
+                    tampilData();
+                    Tidur.tidur();
+                    break;
+                case "3":
+                    if (data.isEmpty()) {
+                        System.out.println("Data Kosong");
+                        Tidur.tidur();
+                        break;
+                    }
+                    System.out.print("Masukkan nama yang dicari: ");
+                    String cari = scanner.nextLine();
+                    int posisi = linearSearch(cari);
+                    if (posisi != -1) {
+                        System.out.println(cari + " Urutan ke " + (posisi + 1));
+                        Tidur.tidur();
+                    } else {
+                        System.out.println(cari + " 404 not Found :( ");
+                        Tidur.tidur();
+                    }
+                    break;
+                case "4":
+                    if (data.isEmpty()) {
+                        System.out.println("Data masih kosong");
+                        Tidur.tidur();
+                        break;
+                    }
+                    Collections.sort(data, String.CASE_INSENSITIVE_ORDER);
+                    System.out.println("Data diurutkan");
+                    tampilData();
+                    Tidur.tidur();
+                    break;
+                default:
+                    System.out.println("Pilihan ra ono");
+                    Tidur.tidur();
+            }
+        }
+    }
+
+    static void tampilData() {
+        if (data.isEmpty()) {
+            System.out.println("Data masih kosong");
+            Tidur.tidur();
+        } else {
+            System.out.println(Ui.garis);
+            System.out.println("Jumlah Data : " + data.size());
+            System.out.println(Ui.garis);
+            for (int i = 0; i < data.size(); i++) {
+                System.out.println((i + 1) + ". " + data.get(i));
+            }
+            System.out.println(Ui.garis);
+        }
+    }
+
+    static int linearSearch(String key) {
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).equalsIgnoreCase(key)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
+
 

@@ -5,7 +5,7 @@
 package com.mycompany.tugasjav3;
 
 import java.util.Random;
-
+// Halo
 /**
  *
  * @author user
@@ -98,7 +98,8 @@ class KesamaanString{
 
 class PerbandinganString{
     public static void main(String[] args) {
-        String nama[] = {"Adam Ganteng Banget Dih", "Nathan Alvino Fam", "Plorentina F P", "Jokowi", "Nikola Tesla"};
+        String nama[] = {"Adam Ganteng Banget Dih", "Nathan Alvino Fam", 
+            "Plorentina F P", "Jokowi", "Nikola Tesla"};
         String temp;
         int N = nama.length;
         System.out.println("Daftar Nama Sebelum Di Urutkan");
